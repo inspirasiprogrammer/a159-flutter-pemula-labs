@@ -3,10 +3,21 @@ import 'package:wisatabandung/model/tourism_place.dart';
 
 var informationTextTheme = TextStyle(fontFamily: 'Oxygen');
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final TourismPlace place;
 
   DetailScreen({this.place});
+
+  @override
+  _DetailScreenState createState() => _DetailScreenState(place: place);
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  final TourismPlace place;
+
+  bool isFavorite = false;
+
+  _DetailScreenState({this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +31,26 @@ class DetailScreen extends StatelessWidget {
               children: <Widget>[
                 Image.asset(place.imageAsset),
                 SafeArea(
-                  child: IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                      IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          }),
+                    ],
+                  ),
                 )
               ],
             ),
