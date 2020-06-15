@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:wisatabandung/model/tourism_place.dart';
 
-var informationTextTheme = TextStyle(fontFamily: 'Oxygen');
+var informationTextStyle = TextStyle(
+  fontFamily: 'Oxygen',
+);
 
-class DetailScreen extends StatefulWidget {
+class DetailScreen extends StatelessWidget {
   final TourismPlace place;
 
-  DetailScreen({this.place});
-
-  @override
-  _DetailScreenState createState() => _DetailScreenState(place: place);
-}
-
-class _DetailScreenState extends State<DetailScreen> {
-  final TourismPlace place;
-
-  bool isFavorite = false;
-
-  _DetailScreenState({this.place});
+  DetailScreen({@required this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +27,15 @@ class _DetailScreenState extends State<DetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }),
-                      IconButton(
-                          icon: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_border,
-                            color: Colors.red,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              isFavorite = !isFavorite;
-                            });
-                          }),
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      FavoriteButton(),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             Container(
@@ -60,8 +44,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 place.name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'Staatliches',
                   fontSize: 30.0,
+                  fontFamily: 'Staatliches',
                 ),
               ),
             ),
@@ -69,47 +53,37 @@ class _DetailScreenState extends State<DetailScreen> {
               margin: EdgeInsets.symmetric(vertical: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.calendar_today),
-                        SizedBox(height: 8.0),
-                        Text(
-                          place.openDays,
-                          textAlign: TextAlign.center,
-                          style: informationTextTheme,
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.calendar_today),
+                      SizedBox(height: 8.0),
+                      Text(
+                        place.openDays,
+                        style: informationTextStyle,
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.access_time),
-                        SizedBox(height: 8.0),
-                        Text(
-                          place.openTime,
-                          textAlign: TextAlign.center,
-                          style: informationTextTheme,
-                        )
-                      ],
-                    ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.access_time),
+                      SizedBox(height: 8.0),
+                      Text(
+                        place.openTime,
+                        style: informationTextStyle,
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.monetization_on),
-                        SizedBox(height: 8.0),
-                        Text(
-                          place.ticketPrice,
-                          textAlign: TextAlign.center,
-                          style: informationTextTheme,
-                        ),
-                      ],
-                    ),
-                  )
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.monetization_on),
+                      SizedBox(height: 8.0),
+                      Text(
+                        place.ticketPrice,
+                        style: informationTextStyle,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -133,17 +107,39 @@ class _DetailScreenState extends State<DetailScreen> {
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        url,
-                      ),
+                      child: Image.network(url),
                     ),
                   );
                 }).toList(),
               ),
-            )
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: Colors.red,
+      ),
+      onPressed: () {
+        setState(() {
+          isFavorite = !isFavorite;
+        });
+      },
     );
   }
 }
