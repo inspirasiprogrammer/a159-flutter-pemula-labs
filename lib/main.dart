@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wisata Bandung',
-      theme: ThemeData.dark(),
+      theme: ThemeData(),
       home: DetailScreen(),
     );
   }
