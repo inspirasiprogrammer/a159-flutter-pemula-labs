@@ -9,14 +9,14 @@ class TourismPlace {
   List<String> imageUrls;
 
   TourismPlace({
-    this.name,
-    this.location,
-    this.description,
-    this.openDays,
-    this.openTime,
-    this.ticketPrice,
-    this.imageAsset,
-    this.imageUrls,
+    required this.name,
+    required this.location,
+    required this.description,
+    required this.openDays,
+    required this.openTime,
+    required this.ticketPrice,
+    required this.imageAsset,
+    required this.imageUrls,
   });
 }
 
