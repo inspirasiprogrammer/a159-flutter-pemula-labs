@@ -7,7 +7,7 @@ var informationTextStyle = TextStyle(fontFamily: 'Oxygen');
 class DetailScreen extends StatelessWidget {
   final TourismPlace place;
 
-  DetailScreen({@required this.place});
+  DetailScreen({required this.place});
 
   Widget MobilePage(BuildContext context) {
     return Scaffold(
