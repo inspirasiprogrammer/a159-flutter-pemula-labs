@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wisatabandung/model/tourism_place.dart';
 
-var informationTextStyle = TextStyle(
-  fontFamily: 'Oxygen',
-);
+var informationTextStyle = TextStyle(fontFamily: 'Oxygen');
 
 class DetailScreen extends StatelessWidget {
   final TourismPlace place;
@@ -14,7 +12,6 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
