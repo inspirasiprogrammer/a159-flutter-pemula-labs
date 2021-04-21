@@ -2,65 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:wisatabandung/detail_screen.dart';
 import 'package:wisatabandung/model/tourism_place.dart';
 
-class MainScreen extends StatefulWidget {
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  TourismPlace selectedPlace;
-
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        // print(constraints.maxWidth);
-        // if (constraints.maxWidth > 800) {
-        //   return Row(
-        //     children: [
-        //       SizedBox(
-        //         child: TourismPlaceList(
-        //           onItemClick: (TourismPlace place) {
-        //             setState(() {
-        //               selectedPlace = place;
-        //             });
-        //           },
-        //         ),
-        //         width: 400,
-        //       ),
-        //       Expanded(
-        //         child: selectedPlace == null
-        //             ? Material(
-        //                 child: Center(
-        //                   child: Text('Select one place'),
-        //                 ),
-        //               )
-        //             : DetailScreen(
-        //                 place: selectedPlace,
-        //                 onBackPressed: () {
-        //                   setState(() {
-        //                     selectedPlace = null;
-        //                   });
-        //                 },
-        //               ),
-        //       ),
-        //     ],
-        //   );
-        // } else {
-        return TourismPlaceList(
-          onItemClick: (TourismPlace place) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return DetailScreen(
-                    place: place,
-                  );
-                },
-              ),
-            );
-          },
-        );
+        return TourismPlaceList();
         // }
       },
     );
@@ -68,10 +15,6 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class TourismPlaceList extends StatelessWidget {
-  final Function(TourismPlace place) onItemClick;
-
-  const TourismPlaceList({@required this.onItemClick});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
