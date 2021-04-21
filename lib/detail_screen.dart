@@ -20,12 +20,12 @@ class DetailScreen extends StatelessWidget {
               children: <Widget>[
                 Image.asset(place.imageAsset),
                 SafeArea(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: CircleAvatar(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CircleAvatar(
                           backgroundColor: Colors.grey,
                           child: IconButton(
                             icon: Icon(
@@ -37,9 +37,9 @@ class DetailScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                      ),
-                      FavoriteButton(),
-                    ],
+                        FavoriteButton(),
+                      ],
+                    ),
                   ),
                 ),
               ],

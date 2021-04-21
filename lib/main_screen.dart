@@ -9,16 +9,13 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Wisata Bandung'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-            children: tourismPlaceList.map((place) {
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          final TourismPlace place = tourismPlaceList[index];
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailScreen(
-                  place: place,
-                );
+                return DetailScreen(place: place);
               }));
             },
             child: Card(
@@ -27,9 +24,7 @@ class MainScreen extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image.asset(
-                      place.imageAsset,
-                    ),
+                    child: Image.asset(place.imageAsset),
                   ),
                   Expanded(
                     flex: 2,
@@ -54,7 +49,8 @@ class MainScreen extends StatelessWidget {
               ),
             ),
           );
-        }).toList()),
+        },
+        itemCount: tourismPlaceList.length,
       ),
     );
   }
