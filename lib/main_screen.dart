@@ -76,18 +76,15 @@ class TourismPlaceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bandung Wisata'),
+        title: Text('Wisata Bandung'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-            children: tourismPlaceList.map((place) {
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          final TourismPlace place = tourismPlaceList[index];
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailScreen(
-                  place: place,
-                );
+                return DetailScreen(place: place);
               }));
             },
             child: Card(
@@ -96,9 +93,7 @@ class TourismPlaceList extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image.asset(
-                      place.imageAsset,
-                    ),
+                    child: Image.asset(place.imageAsset),
                   ),
                   Expanded(
                     flex: 2,
@@ -123,7 +118,8 @@ class TourismPlaceList extends StatelessWidget {
               ),
             ),
           );
-        }).toList()),
+        },
+        itemCount: tourismPlaceList.length,
       ),
     );
   }
