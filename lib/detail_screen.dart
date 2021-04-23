@@ -263,7 +263,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 12),
+                              SizedBox(height: 8.0),
                               Row(
                                 children: <Widget>[
                                   Icon(Icons.monetization_on),
